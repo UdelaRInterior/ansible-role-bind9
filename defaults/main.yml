@@ -38,26 +38,27 @@ bind9_our_neighbors:
 
 # Install custom rndc.key
 bind9_rndc_algorithm: hmac-md5
-#bind9_rndc_key:
+# bind9_rndc_key:
 
 # Global primaries for all zones (if configured as secondary)
-#bind9_masters:
+# bind9_masters:
 #  - name: ns-primary
 #    addresses:
 #      - 1.2.3.4
 
 # Primaries for particular zones (if configured as secondary)
-#bind9_masters_extra:
+# bind9_masters_extra:
 #  - name: ns-primary
 #    addresses:
 #      - 1.2.3.4
 
 # Global secondaries for all zones (if configured as primary)
-#bind9_slaves:
+# bind9_slaves:
 #  - 1.2.3.4
 
 # DNS Zones
-# bind9_zone_dynamic: zone files created from template
+# bind9_zone_dynamic: zone files created from template (see
+#         `templates/bind/zones/db.template.j2` for yaml structure)
 # bind9_zone_static:  zone files copied from `files/bind/zones/`
 bind9_zones_dynamic: []
 bind9_zones_static: []
@@ -70,3 +71,8 @@ bind9_dnssec_notify_xmpp_rcpt: admin@jabber.example.org
 
 # Install monit file for bind9 named
 bind9_monit_enabled: no
+
+bind9_packages:
+    - bind9
+    - dnsutils
+    - haveged

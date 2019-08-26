@@ -72,7 +72,8 @@ bind9_rndc_algorithm: hmac-md5
 #  - 1.2.3.4
 
 # DNS Zones
-# bind9_zone_dynamic: zone files created from template, see `templates/bind/zones/db.template.j2` for yaml structure
+# bind9_zone_dynamic: zone files created from template (see
+#         `templates/bind/zones/db.template.j2` for yaml structure)
 # bind9_zone_static:  zone files copied from `files/bind/zones/`
 bind9_zones_dynamic: []
 bind9_zones_static: []
@@ -85,6 +86,25 @@ bind9_dnssec_notify_xmpp_rcpt: admin@jabber.example.org
 
 # Install monit file for bind9 named
 bind9_monit_enabled: no
+
+bind9_packages:
+    - bind9
+    - dnsutils
+    - haveged
+```
+
+Testing & Development
+---------------------
+
+Tests
+-----
+
+For developing and testing the role we use Travis CI, Molecule and Vagrant. On the local environment you can easily test the role with
+
+Run local tests with:
+
+```
+molecule test 
 ```
 
 ## License
