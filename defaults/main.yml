@@ -76,3 +76,8 @@ bind9_packages:
     - bind9
     - dnsutils
     - haveged
+
+# Directory for bind9 files templates
+bind9_template_named_conf: bind
+## you can set your own templates, for example with
+# bind9_template_named_conf: "{{ playbook_dir }}/host_vars/<my_host>/templates"
