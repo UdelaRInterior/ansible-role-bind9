@@ -20,7 +20,7 @@ For the XMPP notification feature, `python-xmpp` needs to be installed.
 
 ## Role varibles
 
-```
+```yml
 # User and group for bind
 bind9_user: bind
 bind9_group: bind
@@ -83,6 +83,7 @@ bind9_dnssec_notify_xmpp: no
 bind9_dnssec_notify_xmpp_user: user@jabber.example.org
 bind9_dnssec_notify_xmpp_password: insecure
 bind9_dnssec_notify_xmpp_rcpt: admin@jabber.example.org
+bind9_dnssec_notify_xmpp_host: "{{ ansible_jabber_host|default('localhost') }}"
 
 # Install monit file for bind9 named
 bind9_monit_enabled: no
@@ -91,6 +92,27 @@ bind9_packages:
     - bind9
     - dnsutils
     - haveged
+
+# Logging
+bind9_named_logging: False
+bind9_log_path: /var/log/bind
+bind9_log_severity: warning  # critical | error | warning | notice | info | debug [ level ] | dynamic
+bind9_log_versions: 3
+bind9_log_size: 60m           # Time units
+
+bind9_log_categories:
+  - name: default
+    destination: bind_log
+  - name: update
+    destination: bind_log
+  - name: update-security
+    destination: bind_log
+  - name: security
+    destination: default_syslog
+  - name: queries
+    destination: bind_log
+  - name: lame-servers
+    destination: 'null'
 ```
 
 Testing & Development
